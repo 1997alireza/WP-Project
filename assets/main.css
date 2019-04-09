@@ -1,3 +1,6 @@
+.header {
+    background-color: #fff;
+}
 .header-container {
     display: flex;
     padding: 1rem 14%;
@@ -11,11 +14,12 @@
     direction: ltr;
 }
 .ord-div {
-    min-height: 500px; /*todo: remove*/
-    background: url('../img/home-page-bg.jpg') no-repeat -40% 0;
-    background-size: 60%;
+    min-height: 37vw;
+    background: url('../img/home-page-bg.jpg') no-repeat -35% 0;
+    background-size: 54vw;
     text-align: center;
-    color: #9a9a9a
+    color: #9a9a9a;
+    background-color: #fff;
 }
 .ord-title {
     margin-top: 0;
@@ -24,17 +28,32 @@
     color: black;
     font-size: 1.9vw;
     margin-bottom: 0.2rem;
-    margin-top: 0;
-    padding-top: 4rem;
+    margin-top: 3rem;
 }
 .ord-title p {
     font-size: 0.87vw;
     padding-bottom: 0.5rem;
     margin-top: 10px;
 }
+.search-div {
+    display: inline-block;
+    box-shadow: 2px 7px 9px #aaa;
+    PADDING: 10px;
+    border-radius: 6px;
+}
 .search-div div, .search-div fieldset {
     display: inline-block;
     vertical-align:middle;
+}
+.region-getter {
+    margin: 0;
+}
+select::-ms-expand {
+    display: none;
+}
+select{
+    -webkit-appearance: none;
+    appearance: none;
 }
 .dropdown-menu {
     height: 37px;
@@ -43,12 +62,21 @@
     margin-left: 0.3rem;
     border-radius: 8px;
 }
-.dropdown-menu input {
+.dropdown-menu input, .dropdown-menu select  {
     outline: none;
     border: none;
     font-size: 1.2rem;
     width: 4em;
     background: none;
+    vertical-align: baseline;
+    vertical-align: -webkit-baseline-middle;
+}
+.dropdown-menu select {
+    vertical-align: baseline;
+    vertical-align: -webkit-baseline-middle;
+}
+.dropdown-menu select option[disabled] {
+    color: #aaa
 }
 .dropdown-menu i {
     padding-left: 0.9rem;
@@ -57,6 +85,9 @@
     vertical-align: -webkit-baseline-middle;
     font-size: 1.5rem;
     color: black;
+    vertical-align: baseline;
+    vertical-align: -webkit-baseline-middle;
+    margin-top: 6px;
 }
 .region-getter {
     margin-top: -0.4rem;
@@ -73,7 +104,7 @@
 .region-getter-typable {
     padding: 0.3rem;
 }
-.region-getter-typable input {
+.region-getter-typable input, .region-getter-typable select {
     outline: none;
     border: none;
     font-size: 1.2rem;
@@ -104,9 +135,9 @@
     border-right: 0;
     border-left: 0;
     border-radius: 7px 0 0 7px;
-    height: 118%;
+    height: 60px;
     width: 61px;
-    margin-top: -12px;
+    margin-top: -14px;
     margin-left: -11px;
 }
 .search-icon-div i {
@@ -115,4 +146,13 @@
     vertical-align: -webkit-baseline-middle;
     color: white;
     margin-top: 30%;
+}
+.steps-help {
+    display: flex;
+    padding-top: 40px
+}
+.steps-help > div {
+    flex-grow: 5;
+    display: inline-block;
+    text-align: center;
 }
