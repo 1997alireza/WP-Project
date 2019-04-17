@@ -25,12 +25,13 @@
 }
 body, input, textarea, select, button {
     font-family: Shabnam,Arial;
+    outline: none;
 }
 body {
     font-size: 0.85rem;
     color: #4a4a4a;
     margin: 0;
-    background-color: #f3f3f3;
+    background-color: #f5f5f5;
 }
 body > div {
     width: 100%;
@@ -86,4 +87,7 @@ a:hover {
     display: block;
     margin: auto;
     padding-top: 4rem;
+}
+.cursor-pointer{
+    cursor: pointer;
 }

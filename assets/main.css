@@ -37,11 +37,14 @@
 }
 .search-div {
     display: inline-block;
-    box-shadow: 2px 7px 9px #aaa;
+}
+.search-bar-div {
+    box-shadow: 2px 5px 9px #aaa;
     PADDING: 10px;
     border-radius: 6px;
+    background-color: white;
 }
-.search-div div, .search-div fieldset {
+.search-bar-div div, .search-bar-div fieldset {
     display: inline-block;
     vertical-align:middle;
 }
@@ -100,6 +103,7 @@ select{
     padding-left: 1.7rem;
     font-size: 0.7em;
     color: black;
+    text-align: right;
 }
 .region-getter-typable {
     padding: 0.3rem;
@@ -147,12 +151,77 @@ select{
     color: white;
     margin-top: 30%;
 }
+.last-search {
+    text-align: right;
+    margin-top: -8px;
+}
+.last-search p{
+    text-decoration: underline;
+    font-size: 0.8rem
+}
+.last-search i {
+    text-decoration: underline;
+    font-size: 0.7rem
+}
 .steps-help {
+    color: #aaa;
     display: flex;
-    padding-top: 40px
+    padding-top: 5px;
+    width: 80vw;
+    margin:auto;
 }
 .steps-help > div {
     flex-grow: 5;
-    display: inline-block;
     text-align: center;
+    width: 20%;
+    margin-left: 3.5%;
+    margin-right: 3.5%;
+}
+.help-outer-div {
+    display: flex;
+}
+.help-outer-div > div > p{
+    text-align: right;
+    font-size: 17px;
+    margin: 9px 0;
+}
+.help-inner-div {
+    background-color: white;
+    box-shadow: 2px 5px 9px #aaa;
+    display: inline-flex;
+    padding: 15px;
+}
+.help-inner-div p{
+    line-height: 23pt;
+}
+.help-img-div {
+    margin: auto 7px;
+}
+.help-img-div svg {
+    position: absolute;
+    margin-top: 28px;
+    padding: 3px;
+    width: 30px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background-image: -webkit-linear-gradient(45deg, #d40062 30%, #8e00ab 90%);
+    background-image: -moz-linear-gradient(45deg, #d40062 30%, #8e00ab 90%);
+    background-image: -o-linear-gradient(45deg, #d40062 30%, #8e00ab 90%);
+    background-image: linear-gradient(45deg, #d40062 30%, #8e00ab 90%);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.help-img-div img{
+    width: 50px;
+}
+.bests-div {
+    width: 80vw;
+    margin: 80px auto auto;
+    text-align: center;
+}
+.bests-title {
+    margin: auto;
+}
+.bests-items {
+    display: flex;
 }
