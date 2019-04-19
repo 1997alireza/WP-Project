@@ -1,3 +1,7 @@
+body {
+    background-color: #eeeeee;
+    text-align: center;
+}
 .input-container {
     border: 1px solid white;
     border-radius: 5px;
@@ -9,9 +13,8 @@
     height: 3.5rem;
     text-align: center;
     background: white;
-    border-width: 0 0 1px;
-    border-style: solid;
-    border-color: #eee;
+    border: 0 solid #eee;
+    border-bottom-width: 1px;
     position: fixed;
     top: 0;
 }
@@ -19,24 +22,20 @@
     height: 2rem;
     margin-top: .65rem;
 }
-.authentication-register {
+.auth-reg {
     color: #d40062;
     border-width: 0 0 2px;
     border-style: solid;
 }
-.authentication-login {
+.auth-login {
     border: 0 solid white;
     border-bottom-width: 2px;
     color: #4a4a4a;
 }
-.authentication-login:hover {
+.auth-login:hover {
     border-color: #d40062;
 }
-body {
-    background-color: #eeeeee;
-    text-align: center;
-}
-.input-fill {
+.input-div {
     display: inline-block;
     width: 100%;
     margin: 3px auto;
@@ -45,10 +44,10 @@ body {
     text-align: right;
     color: grey;
 }
-.input-fill > div {
+.input-div > div {
     padding: .7rem 1rem;
 }
-.input-fill > div > input {
+.input-div > div > input {
     display: inline-block;
     background: none;
     border: none;
@@ -87,7 +86,7 @@ body {
     margin-left: 3px;
 }
 
-.form-layout > button {
+.form-btn {
     display: inline-block;
     margin: 4rem;
     width: 17%;
@@ -99,29 +98,29 @@ body {
     color: white;
 }
 
-.footer-social {
+.footer .social {
     display: flex;
     justify-content: center;
 }
-.footer-social li {
+.footer .social li {
     width: 5px;
     height: 5px;
     display: inline-flex;
+    margin: .75rem;
+    padding: .75rem;
     justify-content: center;
     align-items: center;
     background: darkgrey;
     border-radius: 50%;
-    margin: .75rem;
-    padding: .75rem;
 }
-.footer-social li i {
+.social li i {
     color: white;
 }
-.footer-options {
+.footer .options {
     display: flex;
     justify-content: center;
 }
-.footer-options li {
+.footer .options li {
     display: inline;
     margin: 1rem;
     color: darkgrey;
