@@ -183,16 +183,20 @@ select{
 .help-outer-div > div > p{
     text-align: right;
     font-size: 17px;
-    margin: 9px 0;
+    margin: 4% 0;
+    height: 8%;
 }
 .help-inner-div {
     background-color: white;
-    box-shadow: 2px 5px 9px #aaa;
+    box-shadow: 0 0 16px #ccc;
     display: inline-flex;
-    padding: 15px;
+    height: 70%;
+    padding: 7% 15px;
+    border-radius: 2px;
 }
 .help-inner-div p{
     line-height: 23pt;
+    margin: auto
 }
 .help-img-div {
     margin: auto 7px;
@@ -214,14 +218,339 @@ select{
 .help-img-div img{
     width: 50px;
 }
-.bests-div {
-    width: 80vw;
-    margin: 80px auto auto;
+.bests-res-div {
+    width: 70vw;
+    margin: 175px auto auto;
     text-align: center;
 }
-.bests-title {
+.bests-res-title {
     margin: auto;
+    color: black;
 }
-.bests-items {
+.good-tehran-restaurants {
+    margin-top: 125px;
+    background: url('../img/good-rest-background.jpg') no-repeat 15% 0;
+    background-size: cover;
+}
+.good-tehran-restaurants > p {
+    margin-right: 3rem;
+    padding-top: 3rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+.good-tehran-row {
+    display: inline-flex;
+    text-align: center;
+    width: 100%;
+    padding-top: 40px;
+}
+.good-tehran-item > p {
+    color: #4c4c4c;
+    margin-top: -2px;
+    font-weight: bold;
+    font-size: 0.88em;
+    min-width: 125px;
+}
+.good-tehran-item > img {
+    width: 80px;
+    box-shadow: 0 0 8px #ccc;
+    -webkit-box-shadow: 0 0 8px #ccc;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+}
+.good-tehran-item:hover > img{
+    box-shadow: 0 0 17px #acacac;
+    -webkit-box-shadow: 0 0 17px #acacac;
+}
+.good-tehran-rest-section {
+    width: 50%;
+    margin-right: 6%;
+    margin-top: 70px;
+}
+.good-tehran-rest-section a {
+    flex-grow: 1;
+}
+.food-type-show {
+    text-align: center;
+}
+.food-type-show > h1 {
+    color: black;
+}
+.food-type-show > p {
+    color: #bbb;
+    font-size: 1.3em;
+}
+.food-type-show-outer {
+    width: 80vw;
+    display: inline-flex;
+    height: 19rem;
+}
+.food-type-show-outer > a {
+    flex-grow: 1;
     display: flex;
+}
+.food-type-show-inner {
+    width: 17.5vw;
+    text-align: right;
+    border-radius: 4px;
+}
+.food-type-show-inner p {
+    color: white;
+    font-size: 1.2em;
+    margin-top: 0.4rem;
+}
+.food-type-show-inner h2{
+    color: white;
+    margin: 0;
+    padding-top: 84%;
+    font-size: 1.7em;
+    transition: 0.4s;
+    -webkit-transition: 0.4s;
+}
+.food-type-show-inner:hover h2 {
+    padding-top: 79%;
+}
+.food-type-show-inner.category1 {
+    background: url('../img/food-type-backs/back1.jpeg') no-repeat 0 0;
+    background-size: cover;
+}
+.food-type-show-inner.category2 {
+    background: url('../img/food-type-backs/back2.jpeg') no-repeat 0 0;
+    background-size: cover;
+}
+.food-type-show-inner.category3 {
+    background: url('../img/food-type-backs/back3.jpeg') no-repeat 0 0;
+    background-size: cover;
+}
+.food-type-show-inner.category4 {
+    background: url('../img/food-type-backs/back4.jpeg') no-repeat 0 0;
+    background-size: cover;
+}
+.food-type-show-inner-shade {
+    height: 100%;
+    background-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, .02) 10%, rgba(0, 0, 0, 0.82));
+    padding-right: 1.5rem;
+    border-radius: 4px;
+}
+.more-foods-div {
+    width: 70vw;
+    text-align: center;
+    margin: 65px auto auto;
+}
+.more-foods-div > h1 {
+    font-weight: normal;
+    color: black
+}
+.more-food-items div {
+    display: inline-block;
+    font-weight: bold;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border-radius: 25px;
+    background-color: white;
+    box-shadow: 0 0 2px #eee;
+    -webkit-box-shadow: 0 0 2px #eee;
+    color: black;
+    font-size: 1.1rem;
+    padding: 12px 19px;
+}
+.more-food-items div:hover {
+    box-shadow: 0 0 8px #ccc;
+    -webkit-box-shadow: 0 0 8px #ccc;
+}
+.app-div {
+    width: 70vw;
+    margin: 170px auto auto;
+}
+.app-div-outer {
+    width: 100%;
+    height: 520px;
+    background-color: white;
+    box-shadow: 0 0 2px #eee;
+    -webkit-box-shadow: 0 0 2px #eee;
+    display: flex;
+}
+.app-div-right-side {
+    flex-grow: 3;
+}
+.app-div-left-side {
+    display: inline-flex;
+    flex-grow: 1;
+}
+.app-div-left-side img {
+    margin-top: -150px;
+    margin-left: -260px;
+    height: 793px;
+}
+.app-div-right-side h1 {
+    margin-right: 30px;
+    margin-top: 30px;
+}
+.app-div-right-side p {
+    margin-right: 30px;
+    font-size: 1.5em;
+}
+.rec-link-div {
+    display: inline-flex;
+    border: 1px solid #a0a0a08a;
+    border-radius: 70px;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    margin-right: 30px;
+    margin-top: 20px;
+    box-shadow: 0 0 15px #ddd;
+    -webkit-box-shadow: 0 0 15px #ddd;
+}
+.rec-link-div:focus-within {
+    border: 1px solid #8e00ab;
+}
+.recv-link-btn {
+    background-image: -webkit-linear-gradient(45deg, #d40062 30%, #8e00ab 90%);
+    background-image: -moz-linear-gradient(45deg, #d40062 30%, #8e00ab 90%);
+    background-image: -o-linear-gradient(45deg, #d40062 30%, #8e00ab 90%);
+    background-image: linear-gradient(45deg, #d40062 30%, #8e00ab 90%);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background-position: 0 0, 0 100%;
+    background-repeat: no-repeat;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    border-right: 0;
+    border-left: 0;
+    margin-left: -11px;
+    color: white;
+    text-align: center;
+    padding-top: 1.2rem;
+    height: 3.6rem;
+    margin-top: 0px;
+    width: 15rem;
+    border-radius: 70px 0 0 70px;
+}
+.rec-link-div .region-getter-typable {
+    width: 20rem;
+}
+.rec-link-div .region-getter-typable input {
+    height: 2.5rem;
+    padding-right: 30px;
+    padding-top: 0.35rem;
+}
+.app-div-access-msg {
+    padding-top: 10px;
+    font-size: 0.8rem;
+    color: #aaa;
+}
+.app-download-links {
+    margin-right: 30px;
+}
+.app-download-links div {
+    display: inline-block;
+    font-weight: bold;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    border-radius: 7px;
+    background-color: white;
+    color: black;
+    font-size: 1.1rem;
+    padding: 0px 0px;
+}
+.app-download-links div:hover {
+    box-shadow: 0 0 8px #ddd;
+    -webkit-box-shadow: 0 0 8px #ddd;
+}
+
+
+
+.footer {
+    background: #1f1f1f;
+}
+.footer-info {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 2rem 7.5rem;
+    align-items: stretch;
+}
+.footer-info > div {
+    margin: 0 15px;
+    flex-grow: 1;
+    border-width: 2px 0 0;
+    border-style: solid;
+}
+.footer-info > div > h4 {
+    color: #ccc;
+    font-size: 13px;
+    font-style: normal;
+}
+.footer-info > div > ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    text-align: right;
+    padding: 0;
+}
+.footer-info > div > ul > li {
+    margin: 3px 0;
+}
+
+.footer-info-apps {
+    border-color: yellow;
+}
+.footer-info-apps img {
+    margin-right: -5px;
+}
+
+.footer-info-support {
+    border-color: orange;
+}
+
+.footer-info-restaurants {
+    border-color: red;
+}
+
+.footer-info-call {
+    border-color: purple;
+}
+
+.footer-info-security {
+    border-color: #1f1f1f;
+    width: 250px;
+    flex-grow: 3;
+}
+.footer-info-security a {
+    color: dodgerblue;
+}
+
+.footer-credentials {
+    text-align: center;
+    padding: 2rem 0;
+}
+.footer-credentials img {
+    height: 8rem;
+    display: inline-block;
+}
+/* social part of footer */
+.footer-social {
+    background: #181818;
+    display: flex;
+    padding: 1rem 0;
+    width: 100%;
+    color: darkgrey;
+    align-items: center;
+}
+.footer-social p {
+    direction: ltr;
+    flex-grow: 1;
+}
+.footer-social ul {
+    flex-grow: 10;
+    direction: ltr;
+}
+.footer-social ul li {
+    display: inline;
+    font-size: 1.25rem;
+    margin: .5em;
 }
