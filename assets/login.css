@@ -5,6 +5,20 @@
 .input-container:focus-within {
     border-color: #d40062;
 }
+.header {
+    height: 3.5rem;
+    text-align: center;
+    background: white;
+    border-width: 0 0 1px;
+    border-style: solid;
+    border-color: #eee;
+    position: fixed;
+    top: 0;
+}
+.header img {
+    height: 2rem;
+    margin-top: .65rem;
+}
 .authentication-login {
     color: #d40062;
     border-width: 0 0 2px;
