@@ -533,7 +533,7 @@ select{
     display: inline-block;
 }
 /* social part of footer */
-.social {
+.footer-social {
     background: #181818;
     display: flex;
     padding: 1rem 0;
@@ -541,15 +541,15 @@ select{
     color: darkgrey;
     align-items: center;
 }
-.social p {
+.footer-social p {
     direction: ltr;
     flex-grow: 1;
 }
-.social ul {
+.footer-social ul {
     flex-grow: 10;
     direction: ltr;
 }
-.social ul li {
+.footer-social ul li {
     display: inline;
     font-size: 1.25rem;
     margin: .5em;

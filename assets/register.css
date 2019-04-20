@@ -97,10 +97,10 @@ body {
     font-size: 18px;
     color: white;
 }
-
 .footer .social {
     display: flex;
     justify-content: center;
+    padding-right: 0;
 }
 .footer .social li {
     width: 5px;
@@ -113,7 +113,7 @@ body {
     background: darkgrey;
     border-radius: 50%;
 }
-.social li i {
+.footer .social li i {
     color: white;
 }
 .footer .options {

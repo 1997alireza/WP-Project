@@ -75,6 +75,7 @@ body {
 .footer .social {
     display: flex;
     justify-content: center;
+    padding-right: 0;
 }
 .footer .social li {
     width: 5px;
