@@ -227,6 +227,9 @@ a:hover {
     transition: 0.25s;
     -webkit-transition: 0.25s;
 }
+.best-res-item>img {
+    width: 80px;
+}
 .best-res-item:hover {
     box-shadow: 0 0 17px #acacac;
     -webkit-box-shadow: 0 0 17px #acacac;
