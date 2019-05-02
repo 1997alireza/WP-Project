@@ -59,7 +59,7 @@ function get_restaurant_big_element(name, img_Url, address, foods, rate, num_of_
     }
     foods_element = '';
     for(var f_i in foods){
-        food = foods[f_i].charAt(0).toUpperCase() + foods[f_i].slice(1);
+        food = translate_food(foods[f_i]);
         foods_element = foods_element.concat('<li>' + food + '</li>')
     }
     return "<a href=\"#\">\n" +
@@ -82,12 +82,12 @@ function get_restaurant_big_element(name, img_Url, address, foods, rate, num_of_
 }
 
 function get_food_type_big_element(title, count, img_url){
-    title = title.charAt(0).toUpperCase() + title.slice(1);
+    title = translate_food(title);
     var element= $("<a href=\"#\">\n" +
         "                <div class=\"food-type-show-inner\">\n" +
         "                    <div class=\"food-type-show-inner-shade\">\n" +
         "                        <h2>" + title + "</h2>\n" +
-        "                        <p>رستوران فعال " + count + "</p>\n" +
+        "                        <p>رستوران فعال " + translate_number(count) + "</p>\n" +
         "                    </div>\n" +
         "                </div>\n" +
         "            </a>");
@@ -100,6 +100,34 @@ function get_food_type_big_element(title, count, img_url){
 }
 
 function get_food_type_small_element(title){
-    title = title.charAt(0).toUpperCase() + title.slice(1);
+    title = translate_food(title);
     return "<a href=\"#\"><div>" + title + "</div></a>"
+}
+
+function translate_food(eng_food){
+    const dict = {
+        'pizza': 'پیتزا',
+        'sandwich': 'ساندویچ',
+        'burger': 'برگر',
+        'kebab': 'کباب',
+        'fastfood': 'فست‌فود',
+        'salad': 'سالاد',
+        'iranian': 'ایرانی',
+        'pasta': 'پاستا',
+        'fish': 'غذای دریایی',
+        'breakfast': 'صبحانه',
+        'juice': 'آبمیوه طبیعی',
+        'steak': 'استیک',
+        'soup': 'سوپ'
+    };
+    if(eng_food in dict) return dict[eng_food];
+    return eng_food
+}
+
+function translate_number(eng_num){
+    fa_num = "";
+    for(var c_i in eng_num){
+        fa_num = fa_num.concat(String.fromCharCode(eng_num.charCodeAt(c_i) + (1776 - 48)));
+    }
+    return fa_num;
 }
