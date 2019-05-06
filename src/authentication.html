@@ -4,58 +4,75 @@
     <meta charset="UTF-8">
     <title>سفارش آنلاین غذا از بهترین رستوران‌ها و فست فودها | ریحون</title>
     <link href="../assets/global.css" rel="stylesheet" type="text/css">
-    <link href="../assets/register.css" rel="stylesheet" type="text/css">
+    <link href="../assets/authentication.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/authentication.js"></script>
 </head>
 <body>
 <div class="header">
     <img src="../img/logo.svg" alt="Reyhoon"/>
 </div>
+
 <div class="authentication-div">
-    <div class="auth-login">
+    <div id="auth-login" class="auth-current-section">
         <i class="fa fa-user"></i>
-        <a href="login.html"><p>ورود</p></a>
+        <p>ورود</p>
     </div>
-    <div class="auth-reg">
+    <div id="auth-reg">
         <i class="fa fa-user"></i>
         <p>ثبت نام</p>
     </div>
 </div>
 
-<div class="page-title">
-    <h2>ثبت نام</h2>
-    <p>از اینکه داری به جمع ریحونیا می‌پیوندی خیلی خوشحالیم</p>
-</div>
-<div class="form-div">
-    <div class="input-div">
+<div class="display-on-login auth-section">
+    <div class="page-title">
+        <h2>ورود</h2>
+        <p>ایمیل و یا شماره تلفن خود را وارد کنید</p>
+    </div>
+    <div class="form-div">
         <div class="input-container">
             <i class="fa fa-user"></i>
-            <input type="text" placeholder="نام و نام‌خانوادگی">
+            <input type="text" placeholder="ایمیل یا شماره تلفن" >
         </div>
-    </div>
-    <div class="input-half-layout">
-        <div class="input-half-right input-container">
-            <i class="fa fa-phone"></i>
-            <input type="text" placeholder="شماره همراه">
-        </div>
-        <div class="input-half-left input-container">
-            <i class="fa fa-envelope"></i>
-            <input type="text" placeholder="ایمیل">
-        </div>
-    </div>
-    <div class="input-div">
         <div class="input-container">
             <i class="fa fa-key"></i>
             <input type="text" placeholder="رمز عبور">
         </div>
+        <a href="#">رمز عبور خود را فراموش کردم</a>
+        <button class="form-btn">ورود</button>
     </div>
-    <div class="input-div">
+</div>
+<div class="display-on-reg auth-section">
+    <div class="page-title">
+        <h2>ثبت نام</h2>
+        <p>از اینکه داری به جمع ریحونیا می‌پیوندی خیلی خوشحالیم</p>
+    </div>
+    <div class="form-div">
+        <div class="input-container">
+            <i class="fa fa-user"></i>
+            <input type="text" placeholder="نام و نام‌خانوادگی">
+        </div>
+        <div class="input-half-layout">
+            <div class="input-half-right input-container">
+                <i class="fa fa-phone"></i>
+                <input type="text" placeholder="شماره همراه">
+            </div>
+            <div class="input-half-left input-container">
+                <i class="fa fa-envelope"></i>
+                <input type="text" placeholder="ایمیل">
+            </div>
+        </div>
+        <div class="input-container">
+            <i class="fa fa-key"></i>
+            <input type="text" placeholder="رمز عبور">
+        </div>
         <div class="input-container">
             <i class="fa fa-key"></i>
             <input type="text" placeholder="تکرار رمز عبور">
         </div>
+        <button class="form-btn">ثبت نام</button>
     </div>
-    <button class="form-btn">ثبت نام</button>
 </div>
 <div class="footer">
     <ul class="social">
