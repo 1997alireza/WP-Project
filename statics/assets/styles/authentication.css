@@ -23,6 +23,7 @@ body {
     border-bottom-width: 1px;
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 .header img {
     height: 2rem;
@@ -153,6 +154,9 @@ body {
 }
 
 /*authentication-div*/
+.authentication-div {
+    z-index: 1;
+}
 .authentication-div > .auth-current-section {
     color: #d40062;
     border-width: 0 0 2px;

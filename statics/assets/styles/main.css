@@ -312,22 +312,6 @@ select{
 .food-type-show-inner:hover h2 {
     padding-top: 79%;
 }
-/*.food-type-show-inner.category1 {*/
-    /*background: url('../img/food-type-backs/back1.jpeg') no-repeat 0 0;*/
-    /*background-size: cover;*/
-/*}*/
-/*.food-type-show-inner.category2 {*/
-    /*background: url('../img/food-type-backs/back2.jpeg') no-repeat 0 0;*/
-    /*background-size: cover;*/
-/*}*/
-/*.food-type-show-inner.category3 {*/
-    /*background: url('../img/food-type-backs/back3.jpeg') no-repeat 0 0;*/
-    /*background-size: cover;*/
-/*}*/
-/*.food-type-show-inner.category4 {*/
-    /*background: url('../img/food-type-backs/back4.jpeg') no-repeat 0 0;*/
-    /*background-size: cover;*/
-/*}*/
 .food-type-show-inner-shade {
     height: 100%;
     background-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, .02) 10%, rgba(0, 0, 0, 0.82));
