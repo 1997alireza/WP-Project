@@ -15,7 +15,7 @@ body {
 .input-container:focus-within {
     border-color: #d40062;
 }
-.header {
+.auth-header {
     height: 3.5rem;
     text-align: center;
     background: white;
@@ -25,7 +25,7 @@ body {
     top: 0;
     z-index: 1;
 }
-.header img {
+.auth-header img {
     height: 2rem;
     margin-top: .65rem;
 }
@@ -40,12 +40,20 @@ body {
     font-size: 18px;
     color: white;
 }
-.footer .social {
+.auth-footer {
+    background: white;
+    padding: 1.5rem 0;
+}
+.auth-footer-divider {
+    background: #ddd;
+    height: 1px;
+}
+.auth-footer .social {
     display: flex;
     justify-content: center;
     padding-right: 0;
 }
-.footer .social li {
+.auth-footer .social li {
     width: 5px;
     height: 5px;
     display: inline-flex;
@@ -57,14 +65,14 @@ body {
     border-radius: 50%;
     cursor: pointer;
 }
-.footer .social li i {
+.auth-footer .social li i {
     color: white;
 }
-.footer .options {
+.auth-footer .options {
     display: flex;
     justify-content: center;
 }
-.footer .options li {
+.auth-footer .options li {
     display: inline;
     margin: 1rem;
     color: darkgrey;
@@ -156,6 +164,9 @@ body {
 /*authentication-div*/
 .authentication-div {
     z-index: 1;
+}
+.authentication-div a {
+    color: #4a4a4a;
 }
 .authentication-div > .auth-current-section {
     color: #d40062;

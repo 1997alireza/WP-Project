@@ -33,12 +33,30 @@ body {
     margin: 0;
     background-color: #f5fafc;
 }
+input::-webkit-calendar-picker-indicator {
+    display: none;
+}
 ul, li {
     list-style: none;
 }
 body > div {
     width: 100%;
     width: 100vw;
+}
+.header {
+    background-color: #fff;
+}
+.header-container {
+    display: flex;
+    padding: 1rem 14%;
+}
+.header-container > div {
+    flex-grow: 5;
+    display: inline-block;
+}
+.header-container > div[order="final"] {
+    flex-grow: 100;
+    direction: ltr;
 }
 .splitter {
     vertical-align: baseline;
@@ -284,13 +302,91 @@ a:hover {
 /*footer*/
 
 .footer {
-    background: white;
-    padding: 1.5rem 0;
+    background: #1f1f1f;
 }
-.footer-divider {
-    background: #ddd;
-    height: 1px;
+.footer-info {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 2rem 7.5rem;
+    align-items: stretch;
 }
-.authentication-div a {
-    color: #4a4a4a;
+.footer-info > div {
+    margin: 0 15px;
+    flex-grow: 1;
+    border-width: 2px 0 0;
+    border-style: solid;
+}
+.footer-info > div > h4 {
+    color: #ccc;
+    font-size: 13px;
+    font-style: normal;
+}
+.footer-info > div > ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    text-align: right;
+    padding: 0;
+}
+.footer-info > div > ul > li {
+    margin: 3px 0;
+}
+
+.footer-info-apps {
+    border-color: yellow;
+}
+.footer-info-apps img {
+    margin-right: -5px;
+}
+
+.footer-info-support {
+    border-color: orange;
+}
+
+.footer-info-restaurants {
+    border-color: red;
+}
+
+.footer-info-call {
+    border-color: purple;
+}
+
+.footer-info-security {
+    border-color: #1f1f1f;
+    width: 250px;
+    flex-grow: 3;
+}
+.footer-info-security a {
+    color: dodgerblue;
+}
+
+.footer-credentials {
+    text-align: center;
+    padding: 2rem 0;
+}
+.footer-credentials img {
+    height: 8rem;
+    display: inline-block;
+}
+/* social part of footer */
+.footer-social {
+    background: #181818;
+    display: flex;
+    padding: 1rem 0;
+    width: 100%;
+    color: darkgrey;
+    align-items: center;
+}
+.footer-social p {
+    direction: ltr;
+    flex-grow: 1;
+}
+.footer-social ul {
+    flex-grow: 10;
+    direction: ltr;
+}
+.footer-social ul li {
+    display: inline;
+    font-size: 1.25rem;
+    margin: .5em;
 }

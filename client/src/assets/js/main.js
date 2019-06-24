@@ -1,3 +1,5 @@
+import $ from 'jquery'
+
 $.get('http://demo2469824.mockable.io/best-restaurants', function(data, status){
     if(status==='success'){
         const GREAT_REST_NUM = 3;
@@ -19,19 +21,19 @@ $.get('http://demo2469824.mockable.io/best-restaurants', function(data, status){
 $.get('http://demo2469824.mockable.io/foods', function(data, status) {
     if (status === 'success') {
         const BEST_FOOD_TYPE_NUM = 4;
-        top_foods_div_element = $('.food-type-show-outer');
-        small_foods_div_element = $('.more-food-items');
-        food_xml = data.getElementsByTagName('food');
+        let top_foods_div_element = $('.food-type-show-outer');
+        let small_foods_div_element = $('.more-food-items');
+        let food_xml = data.getElementsByTagName('food');
         for(var i=0; i < BEST_FOOD_TYPE_NUM; i++){
             var food_html_collection = food_xml[i];
-            title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
-            count = food_html_collection.getElementsByTagName('count').item(0).innerHTML;
-            img_url = food_html_collection.getElementsByTagName('imgUrl').item(0).innerHTML;
+            let title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
+            let count = food_html_collection.getElementsByTagName('count').item(0).innerHTML;
+            let img_url = food_html_collection.getElementsByTagName('imgUrl').item(0).innerHTML;
             top_foods_div_element.append(get_food_type_big_element(title, count, img_url))
         }
         for(i=BEST_FOOD_TYPE_NUM; i < food_xml.length; i++){
             var food_html_collection = food_xml[i];
-            title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
+            let title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
             small_foods_div_element.append(get_food_type_small_element(title))
         }
     }
@@ -47,7 +49,7 @@ function get_restaurant_small_element(name, img_url){
 }
 
 function get_restaurant_big_element(name, img_Url, address, foods, rate, num_of_rates) {
-    stars_element = '';
+    let stars_element = '';
     for(var i = 0; i < Math.floor(rate); i++){
         stars_element = stars_element.concat("<i class=\"fa fa-star full-star\"></i>")
     }
@@ -57,9 +59,9 @@ function get_restaurant_big_element(name, img_Url, address, foods, rate, num_of_
     for(i = Math.ceil(rate); i < 5; i++){
         stars_element = stars_element.concat("<i class=\"fa fa-star dark-star\"></i>")
     }
-    foods_element = '';
+    let foods_element = '';
     for(var f_i in foods){
-        food = translate_food(foods[f_i]);
+        let food = translate_food(foods[f_i]);
         foods_element = foods_element.concat('<li>' + food + '</li>')
     }
     return "<a href=\"#\">\n" +
@@ -125,7 +127,7 @@ function translate_food(eng_food){
 }
 
 function translate_number(eng_num){
-    fa_num = "";
+    let fa_num = "";
     for(var c_i in eng_num){
         fa_num = fa_num.concat(String.fromCharCode(eng_num.charCodeAt(c_i) + (1776 - 48)));
     }
