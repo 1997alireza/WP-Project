@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-const port = 3000;
+const port = 3001;
 
 mongoose.connect("mongodb://localhost/wp_project", { useNewUrlParser: true });
 const db = mongoose.connection;
@@ -13,14 +13,14 @@ db.once("open", function () {
 });
 
 app.use(express.json());
-app.use(express.static('./statics'));
+app.use(express.static('./client/public/statics'));
 
 app.get('/', (req,res) => {
-    res.sendFile('./src/index.html', {root: '.'});
+    res.sendFile('./main.html', {root: './client/public'});
 });
 
 app.get('/authentication', (req,res) => {
-    res.sendFile('./src/authentication.html', {root: '.'});
+    res.sendFile('./authentication.html', {root: './client/public'});
 });
 
 const restaurant_router = require("./routers/restaurant.js");

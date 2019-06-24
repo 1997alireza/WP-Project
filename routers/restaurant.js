@@ -217,7 +217,7 @@ restaurant_router
             }
         });
     })
-    .post('/create', async (req, res) => {
+    .post('/', async (req, res) => {
         try {
             let restaurant_obj = new restaurant.model();
             restaurant_obj.name = req.body.name.toString();
