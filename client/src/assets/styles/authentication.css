@@ -1,4 +1,4 @@
-body {
+#root {
     background-color: #eeeeee;
     text-align: center;
 }
@@ -23,11 +23,13 @@ body {
     border-bottom-width: 1px;
     position: fixed;
     top: 0;
-    z-index: 1;
+    width: 100%;
+    width: 100vw;
 }
-.auth-header img {
+.auth-header img, .auth-header svg {
     height: 2rem;
     margin-top: .65rem;
+    z-index: 1;
 }
 .form-btn {
     display: inline-block;
@@ -164,6 +166,8 @@ body {
 /*authentication-div*/
 .authentication-div {
     z-index: 1;
+    width: 100%;
+    width: 100vw;
 }
 .authentication-div a {
     color: #4a4a4a;

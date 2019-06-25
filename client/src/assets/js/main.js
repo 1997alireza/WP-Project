@@ -1,42 +1,44 @@
 import $ from 'jquery'
 
-$.get('http://demo2469824.mockable.io/best-restaurants', function(data, status){
-    if(status==='success'){
-        const GREAT_REST_NUM = 3;
-        var best_rests = data.restaurants;
-        var rest_section_element = $('.good-tehran-rest-section');
-        for(var i = 0; i < GREAT_REST_NUM; i++){
-            $('.best-restaurants').append(get_restaurant_big_element(best_rests[i].name, best_rests[i].imgUrl,
-                best_rests[i].address, best_rests[i].foods, best_rests[i].rate, best_rests[i].numOfRates))
-        }
-        for(i = GREAT_REST_NUM; i < best_rests.length; i++){
-            if(i%4 === GREAT_REST_NUM){
-                rest_section_element.append("<div class=\"good-tehran-row\"></div>");
+$(document).ready(function() {
+    $.get('http://demo2469824.mockable.io/best-restaurants', function (data, status) {
+        if (status === 'success') {
+            const GREAT_REST_NUM = 3;
+            var best_rests = data.restaurants;
+            var rest_section_element = $('.good-tehran-rest-section');
+            for (var i = 0; i < GREAT_REST_NUM; i++) {
+                $('.best-restaurants').append(get_restaurant_big_element(best_rests[i].name, best_rests[i].imgUrl,
+                    best_rests[i].address, best_rests[i].foods, best_rests[i].rate, best_rests[i].numOfRates))
             }
-            $('.good-tehran-rest-section>div').last().append(get_restaurant_small_element(best_rests[i].name,
-                best_rests[i].imgUrl))
+            for (i = GREAT_REST_NUM; i < best_rests.length; i++) {
+                if (i % 4 === GREAT_REST_NUM) {
+                    rest_section_element.append("<div class=\"good-tehran-row\"></div>");
+                }
+                $('.good-tehran-rest-section>div').last().append(get_restaurant_small_element(best_rests[i].name,
+                    best_rests[i].imgUrl))
+            }
         }
-    }
-});
-$.get('http://demo2469824.mockable.io/foods', function(data, status) {
-    if (status === 'success') {
-        const BEST_FOOD_TYPE_NUM = 4;
-        let top_foods_div_element = $('.food-type-show-outer');
-        let small_foods_div_element = $('.more-food-items');
-        let food_xml = data.getElementsByTagName('food');
-        for(var i=0; i < BEST_FOOD_TYPE_NUM; i++){
-            var food_html_collection = food_xml[i];
-            let title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
-            let count = food_html_collection.getElementsByTagName('count').item(0).innerHTML;
-            let img_url = food_html_collection.getElementsByTagName('imgUrl').item(0).innerHTML;
-            top_foods_div_element.append(get_food_type_big_element(title, count, img_url))
+    });
+    $.get('http://demo2469824.mockable.io/foods', function (data, status) {
+        if (status === 'success') {
+            const BEST_FOOD_TYPE_NUM = 4;
+            let top_foods_div_element = $('.food-type-show-outer');
+            let small_foods_div_element = $('.more-food-items');
+            let food_xml = data.getElementsByTagName('food');
+            for (var i = 0; i < BEST_FOOD_TYPE_NUM; i++) {
+                var food_html_collection = food_xml[i];
+                let title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
+                let count = food_html_collection.getElementsByTagName('count').item(0).innerHTML;
+                let img_url = food_html_collection.getElementsByTagName('imgUrl').item(0).innerHTML;
+                top_foods_div_element.append(get_food_type_big_element(title, count, img_url))
+            }
+            for (i = BEST_FOOD_TYPE_NUM; i < food_xml.length; i++) {
+                var food_html_collection = food_xml[i];
+                let title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
+                small_foods_div_element.append(get_food_type_small_element(title))
+            }
         }
-        for(i=BEST_FOOD_TYPE_NUM; i < food_xml.length; i++){
-            var food_html_collection = food_xml[i];
-            let title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
-            small_foods_div_element.append(get_food_type_small_element(title))
-        }
-    }
+    });
 });
 
 function get_restaurant_small_element(name, img_url){

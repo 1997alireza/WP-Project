@@ -1,3 +1,4 @@
+@import "https://use.fontawesome.com/releases/v5.8.1/css/all.css";
 @font-face {
     font-family: Shabnam;
     src: url('../font/Shabnam.eot');
@@ -33,15 +34,14 @@ body {
     margin: 0;
     background-color: #f5fafc;
 }
+#root {
+    margin: 0;
+}
 input::-webkit-calendar-picker-indicator {
     display: none;
 }
 ul, li {
     list-style: none;
-}
-body > div {
-    width: 100%;
-    width: 100vw;
 }
 .header {
     background-color: #fff;
