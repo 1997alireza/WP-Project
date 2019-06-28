@@ -15,7 +15,7 @@ export default class RestaurantList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {restaurant_list: [], categories_count: [], categories_check: {}, search_text: '',
-            window_width: window.innerWidth, clicked_on_area: false};
+            filter_search_text: '', window_width: window.innerWidth, clicked_on_area: false};
     }
     componentWillMount() {
         axios.get(conf.server_adr + '/api/restaurants?area=' + this.props.match.params.area)
@@ -59,8 +59,11 @@ export default class RestaurantList extends React.Component {
         cat_check[key] = !cat_check[key];
         this.setState({categories_check: cat_check});
     }
-    search_text_change(event){
+    rest_search_text_change(event){
         this.setState({search_text: event.target.value});
+    }
+    filter_search_text_change(event){
+        this.setState({filter_search_text: event.target.value});
     }
     click_on_area_part(){
         this.setState({clicked_on_area: true})
@@ -69,7 +72,6 @@ export default class RestaurantList extends React.Component {
         this.setState({clicked_on_area: false})
     }
     render() {
-        // console.log(this.state.window_width)
         if(this.state.window_width < 985)
             this.card_num_in_a_row = 1;
         else if(this.state.window_width < 1420)
@@ -145,36 +147,41 @@ export default class RestaurantList extends React.Component {
         this.state.categories_count.forEach(item => {
             let key = item[0];
             let count = item[1];
-            let el =
-                <div key={key} className={"filter-item"} onClick={() => this.filter_click(key)}>
-                    <div>
-                        <label className="checkbox-container">
-                            <input key={key} type="checkbox" defaultChecked={this.state.categories_check[key]}/>
-                            <span className="checkmark"></span>
-                        </label>
-                    </div>
-                    <p className={"filter-name"}>{translate_food(key)}</p>
-                    <p className={"filter-count"}>({count})</p>
-                </div>;
-            if(this.state.categories_check[key])
-                selected_filter_elements.push(el);
-            else
-                not_selected_filter_elements.push(el);
+            if(translate_food(key).substr(0, this.state.filter_search_text.length) === this.state.filter_search_text ||
+                key.substr(0, this.state.filter_search_text.length) === this.state.filter_search_text) {
+                let el =
+                    <div key={key} className={"filter-item"} onClick={() => this.filter_click(key)}>
+                        <div>
+                            <label className="checkbox-container">
+                                <input key={key} type="checkbox" defaultChecked={this.state.categories_check[key]}/>
+                                <span className="checkmark"></span>
+                            </label>
+                        </div>
+                        <p className={"filter-name"}>{translate_food(key)}</p>
+                        <p className={"filter-count"}>({count})</p>
+                    </div>;
+                if (this.state.categories_check[key])
+                    selected_filter_elements.push(el);
+                else
+                    not_selected_filter_elements.push(el);
+            }
         });
         return (
             <Fragment>
                 <Header/>
-                <img className='header-background-image' src={back} alt={""} onClick={this.click_on_out_of_area_part}/>
+                <img className='header-background-image' src={back} alt={""} onClick={() => this.click_on_out_of_area_part()}/>
                 <Area number={this.state.restaurant_list.length} city={this.props.match.params.city}
-                      area={this.props.match.params.area} onClick={this.click_on_area_part}/>
-                <div className="rest-search-div-container">
+                      area={this.props.match.params.area}
+                      onClickOnBar={() => this.click_on_area_part()}
+                      show_search={this.state.clicked_on_area}/>
+                <div className="rest-search-div-container" onClick={() => this.click_on_out_of_area_part()}>
                     <div className="rest-search-div">
                         <i className="fas fa-search"></i>
                         <input type="text" placeholder="جست‌وجوی رستوران در این محدوده"
-                               onChange={(event) => this.search_text_change(event)} />
+                               onChange={(event) => this.rest_search_text_change(event)} />
                     </div>
                 </div>
-                <div className={"rest-list-main"}>
+                <div className={"rest-list-main"} onClick={() => this.click_on_out_of_area_part()}>
                     <div className={"filter-part"}>
                         <div className={"filter-part-inner"}>
                             <div className={"filter-part-title"}>
@@ -182,7 +189,8 @@ export default class RestaurantList extends React.Component {
                             </div>
                             <div className={"filter-search-div"}>
                                 <div>
-                                    <input type={"text"} placeholder={"جست‌وجوی دسته‌بندی غذاها"} />
+                                    <input type={"text"} placeholder={"جست‌وجوی دسته‌بندی غذاها"}
+                                           onChange={(event) => this.filter_search_text_change(event)}/>
                                 </div>
                             </div>
                             <div className={"filter-list selected-filter-list"}>
