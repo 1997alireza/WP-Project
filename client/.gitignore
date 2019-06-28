@@ -2,4 +2,3 @@ package-lock.json
 yarn.lock
 ./public/statics/assets/img/restaurants/*
 *.test.js
-./assets/img/restaurants
