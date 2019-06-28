@@ -13,15 +13,11 @@ db.once("open", function () {
 });
 
 app.use(express.json());
-app.use(express.static('./client/public/statics'));
+app.use(express.static('./public'));
 
 app.get('/', (req,res) => {
     res.sendFile('./index.html', {root: './client/public'});
-}); //TODO
-
-app.get('/authentication', (req,res) => {
-    res.sendFile('./authentication.html', {root: './client/public'});
-}); //TODO
+});
 
 const restaurant_router = require("./routers/restaurant.js");
 app.use("/api/restaurants", restaurant_router);

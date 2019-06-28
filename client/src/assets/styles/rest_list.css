@@ -1,0 +1,276 @@
+#root {
+    background-color: #fff;
+}
+.header-background-image {
+    width: 100%;
+    object-fit: cover;
+    height: 220px;
+}
+.header-bar {
+    margin-bottom: 20px;
+}
+.header-title {
+    padding-left: 40%;
+}
+.header-title-p {
+    font-size: 1.4em;
+    display: inline-block;
+    padding-bottom: 15px;
+    margin: 1.4em 0 0.6em 0;
+}
+.area-select {
+    padding-right: 10px;
+}
+.area-select-arrow {
+    padding-left: 10px;
+    padding-right: 4px;
+}
+.inline-block {
+    display: inline-block;
+}
+.rest-search-div-container {
+    padding-top: 2em;
+    border-top: 1px solid black;
+    padding-left: 46%;
+}
+.rest-search-div {
+    margin-top: -0.4rem;
+    height: 40px;
+    border: 1px solid #c7c6c6;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    display: inline;
+    font-size: 1.2em;
+    padding: 0.3em 0.5em;
+}
+.rest-search-div input {
+    background-color: rgba(236,242,245,0);
+    border: none;
+    padding: 1em 2em;
+    font-size: 0.9em;
+    width: 50%;
+}
+.rest-list-main {
+    padding: 1% 12% 0;
+    display: flex;
+    text-align: center;
+}
+.rest-part {
+    margin: auto;
+    width: 0;
+    flex-grow: 11;
+}
+.rest-part-row {
+    display: flex;
+    width: 100%;
+    margin-bottom: 3%;
+}
+.rest-part-row > a {
+    width: 15%;
+    text-align: center;
+    flex-grow: 5;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+.rest-part-row > a > div {
+    text-align: center;
+    border-radius: 3px;
+}
+.rest-part-row > h1 {
+    color: black;
+    font-size: 1.7em;
+}
+.closed-restaurant-row .restaurant-small-item{
+    background-color: #f1f1f1;
+}
+.restaurant-small-item {
+    background-color: white;
+    box-shadow: 0 0 8px #ccc;
+    -webkit-box-shadow: 0 0 8px #ccc;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    cursor: pointer;
+}
+.restaurant-small-item img {
+    width: 80px;
+    border: 1px solid rgba(145, 145, 145, 0.6);
+    border-radius: 4px;
+}
+.restaurant-small-item-image-container {
+}
+.restaurant-small-item:hover {
+    box-shadow: 0 0 17px #acacac;
+    -webkit-box-shadow: 0 0 17px #acacac;
+}
+.restaurant-small-item:hover .start-order-btn{
+    background-color: rgba(212,0,98,.05)
+}
+.restaurant-small-item > .first-div {
+    padding: 6% 4% 5% 0;
+    display: inline-flex;
+    width: 100%;
+}
+.restaurant-small-item > .second-div {
+    padding: 2% 0 2% 0;
+    background-color: #f7f7f773;
+}
+.restaurant-small-item-details-container {
+    text-align: right;
+    margin-right: 4%;
+}
+.restaurant-small-item-details-container .res-food-types {
+    color: #000000;
+    padding: 0.5rem 0 0;
+    font-size: 0.65rem;
+}
+.restaurant-small-item-details-container .res-food-types > li:not(:last-child):after{
+    margin: 0.4rem .4rem auto .4rem;
+    background-color: #000000;
+}
+.restaurant-small-item-details-container .res-shady-address {
+    margin-top: 3%;
+    font-size: 0.65rem;
+    display: inline;
+}
+.restaurant-small-item-details-container .res-shady-address:after {
+    width: 50%;
+}
+.closed-restaurant-row .restaurant-small-item{
+    background-color: #f1f1f1;
+}
+.closed-restaurant-row .restaurant-small-item .res-shady-address:after {
+    background: -webkit-gradient(linear,left top,right top,color-stop(30%,#fff),to(hsla(0,0%,100%,0)));
+    background: -webkit-linear-gradient(left,#f1f1f1 30%,hsla(0,0%,100%,0));
+    background: -o-linear-gradient(left,#f1f1f1 30%,hsla(0,0%,100%,0) 100%);
+    background: linear-gradient(90deg,#f1f1f1 30%,hsla(0,0%,100%,0));
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+}
+.closed-restaurant-row .restaurant-small-item {
+    -webkit-box-shadow: 0 0 .5rem #a0a0a0;
+    box-shadow: 0 0 .5rem #a0a0a0;
+}
+.closed-restaurant-row .restaurant-small-item:hover {
+    box-shadow: 0 0 0.2rem #a0a0a0;
+    -webkit-box-shadow: 0 0 0.2rem #a0a0a0;
+    background-color: #f7f7f7;
+}
+.closed-restaurant-row .restaurant-small-item:hover .res-shady-address:after {
+    background: -webkit-gradient(linear,left top,right top,color-stop(30%,#fff),to(hsla(0,0%,100%,0)));
+    background: -webkit-linear-gradient(left,#f7f7f7 30%,hsla(0,0%,100%,0));
+    background: -o-linear-gradient(left,#f7f7f7 30%,hsla(0,0%,100%,0) 100%);
+    background: linear-gradient(90deg,#f7f7f7 30%,hsla(0,0%,100%,0));
+}
+.filter-part {
+    flex-grow: 1;
+    margin-left: 2%;
+}
+.filter-part-inner {
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid #dedede;
+}
+.filter-part-title {
+    text-align: right;
+    border-bottom: 1px solid #dedede;
+}
+.filter-part-title p {
+    padding-right: 1em;
+    font-size: 0.6rem;
+    color: #777;
+}
+.filter-search-div {
+    padding: 5% 0;
+}
+.filter-search-div > div {
+    margin: 0 .6em;
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    height: 1.9rem;
+    background-color: #f7f7f7;
+}
+.filter-search-div > div > input {
+    width: 97%;
+    border: none;
+    height: 92%;
+    background-color: #fff0;
+}
+.filter-list {
+    display: grid;
+}
+.filter-item {
+    display: inline-flex;
+    padding: 0 10% 2% 0;
+    border-bottom: 1px solid #e8e8e8;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    cursor: pointer;
+}
+.filter-item:hover {
+    background-color: #f1f1f1;
+}
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    height: 25px;
+    margin-top: 10px;
+}
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border-radius: 4px;
+    width: 0.9em;
+    height: 0.9em;
+    border: 1px solid #bdbdbd;
+}
+.checkbox-container input:checked ~ .checkmark {
+    background-color: rgb(199,0,80);
+    border: 1px solid rgb(199,0,80);
+}
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 0.3em;
+    top: 0.1em;
+    width: 0.2em;
+    height: 0.5em;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.filter-name {
+    display: inline-flex;
+    margin: auto 0;
+    padding: 0 4% 0 2%;
+    font-size: 1.09em;
+}
+.filter-count {
+    display: inline-flex;
+    margin: auto 0;
+    font-size: 0.7em;
+}
+.selected-filter-list {
+    border-bottom: 3px solid #d6d6d6;
+}

@@ -7,6 +7,25 @@ const address = require("../models/address.js");
 const category = require("../models/category.js");
 const food = require("../models/food.js");
 
+function restaurant_details_to_send(restaurant) {
+    let sum_qualities = 0;
+    let num = 0;
+    restaurant.comments.forEach(comment => {
+        sum_qualities += comment.quality;
+        num++;
+    });
+    return {
+        _id: restaurant._id,
+        name: restaurant.name,
+        openingTime: restaurant.openingTime,
+        closingTime: restaurant.closingTime,
+        address: restaurant.address,
+        categories: restaurant.categories,
+        foods: restaurant.foods,
+        logo: '/img/restaurants/' + restaurant._id + '.jpeg',
+        averageRate: sum_qualities / Math.max(num, 1)
+    };
+}
 const restaurant_router = express.Router();
 
 restaurant_router
@@ -34,14 +53,14 @@ restaurant_router
                                     return !rest.categories.map(ent => ent.name).includes(c);
                                 })
                             ) {
-                                accepted.push(rest);
+                                accepted.push(restaurant_details_to_send(rest));
                             }
                         });
 
                         res.send(accepted)
                     }
                     else {
-                        res.send(restaurants);
+                        res.send(restaurants.map(rest => restaurant_details_to_send(rest)));
                     }
                 }
             });
@@ -109,24 +128,7 @@ restaurant_router
                 else {
                     if (restaurant == null) res.status(404).send(null);
                     else {
-                        let sum_qualities = 0;
-                        let num = 0;
-                        restaurant.comments.forEach(comment => {
-                            sum_qualities += comment.quality;
-                            num++;
-                        });
-                        let result_rest = {
-                            _id: restaurant._id,
-                            name: restaurant.name,
-                            openingTime: restaurant.openingTime,
-                            closingTime: restaurant.closingTime,
-                            address: restaurant.address,
-                            categories: restaurant.categories,
-                            foods: restaurant.foods,
-                            logo: '/assets/img/restaurants/' + restaurant._id + '.jpeg',
-                            averageRate: sum_qualities / num
-                        };
-                        res.send(result_rest)
+                        res.send(restaurant_details_to_send(restaurant))
                     }
                 }
             });

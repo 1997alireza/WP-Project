@@ -142,14 +142,14 @@ a:hover {
 .res-score {
     display: inline-flex;
 }
-.res-score:before {
+.lines-around:before {
     content: "";
     width: 2rem;
     height: 0.07rem;
     background-color: #ddd;
     margin: auto auto auto 1rem;
 }
-.res-score:after {
+.lines-around:after {
     content: "";
     width: 2rem;
     height: 0.07rem;
@@ -218,6 +218,7 @@ a:hover {
     transition: -webkit-transform .3s;
     transition: transform .3s;
     transition: transform .3s,-webkit-transform .3s;
+    cursor: pointer;
 }
 .best-restaurants {
     color: #aaa;
@@ -236,34 +237,11 @@ a:hover {
     text-align: center;
     border-radius: 4px;
 }
-.best-res-item {
-    background-color: white;
-    height: 100%;
-    padding: 20px 15px 0px 15px;
-    box-shadow: 0 0 8px #ccc;
-    -webkit-box-shadow: 0 0 8px #ccc;
-    transition: 0.25s;
-    -webkit-transition: 0.25s;
-}
-.best-res-item>img {
-    width: 80px;
-}
-.best-res-item:hover {
-    box-shadow: 0 0 17px #acacac;
-    -webkit-box-shadow: 0 0 17px #acacac;
-}
-.best-res-item img{
-    webkit-box-shadow: 0 0.25rem 1.1rem #ccc;
-    box-shadow: 0 0.25rem 1.1rem #ccc;
-}
-.best-res-name {
+.restaurant-item-name {
     font-weight: bold;
     color: black;
     margin-top: 10px;
     font-size: 1.45em;
-}
-.best-res-item:hover .start-order-btn{
-    background-color: rgba(212,0,98,.05)
 }
 .page-title {
     padding: 4rem 0;

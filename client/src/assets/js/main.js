@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import {translate_food, translate_number} from "./tools";
 
 $(document).ready(function() {
     $.get('http://demo2469824.mockable.io/best-restaurants', function (data, status) {
@@ -25,15 +26,16 @@ $(document).ready(function() {
             let top_foods_div_element = $('.food-type-show-outer');
             let small_foods_div_element = $('.more-food-items');
             let food_xml = data.getElementsByTagName('food');
-            for (var i = 0; i < BEST_FOOD_TYPE_NUM; i++) {
-                var food_html_collection = food_xml[i];
+            let food_html_collection = null;
+            for (let i = 0; i < BEST_FOOD_TYPE_NUM; i++) {
+                food_html_collection = food_xml[i];
                 let title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
                 let count = food_html_collection.getElementsByTagName('count').item(0).innerHTML;
                 let img_url = food_html_collection.getElementsByTagName('imgUrl').item(0).innerHTML;
                 top_foods_div_element.append(get_food_type_big_element(title, count, img_url))
             }
-            for (i = BEST_FOOD_TYPE_NUM; i < food_xml.length; i++) {
-                var food_html_collection = food_xml[i];
+            for (let i = BEST_FOOD_TYPE_NUM; i < food_xml.length; i++) {
+                food_html_collection = food_xml[i];
                 let title = food_html_collection.getElementsByTagName('name').item(0).innerHTML;
                 small_foods_div_element.append(get_food_type_small_element(title))
             }
@@ -67,10 +69,10 @@ function get_restaurant_big_element(name, img_Url, address, foods, rate, num_of_
         foods_element = foods_element.concat('<li>' + food + '</li>')
     }
     return "<a href=\"#\">\n" +
-        "                <div class=\"best-res-item\">\n" +
+        "                <div class=\"restaurant-big-item\">\n" +
         "                    <img src=" + img_Url +" />\n" +
-        "                    <p class=\"best-res-name\">" + name + "</p>\n" +
-        "                    <div class=\"res-score\">\n" +
+        "                    <p class=\"restaurant-item-name\">" + name + "</p>\n" +
+        "                    <div class=\"res-score lines-around\">\n" +
         "                        <span class=\"score-number\">" + rate + "</span>\n" +
         "                        <div class=\"score-stars\">\n" + stars_element +
         "                        </div>\n" +
@@ -108,30 +110,3 @@ function get_food_type_small_element(title){
     return "<a href=\"#\"><div>" + title + "</div></a>"
 }
 
-function translate_food(eng_food){
-    const dict = {
-        'pizza': 'پیتزا',
-        'sandwich': 'ساندویچ',
-        'burger': 'برگر',
-        'kebab': 'کباب',
-        'fastfood': 'فست‌فود',
-        'salad': 'سالاد',
-        'iranian': 'ایرانی',
-        'pasta': 'پاستا',
-        'fish': 'غذای دریایی',
-        'breakfast': 'صبحانه',
-        'juice': 'آبمیوه طبیعی',
-        'steak': 'استیک',
-        'soup': 'سوپ'
-    };
-    if(eng_food in dict) return dict[eng_food];
-    return eng_food
-}
-
-function translate_number(eng_num){
-    let fa_num = "";
-    for(var c_i in eng_num){
-        fa_num = fa_num.concat(String.fromCharCode(eng_num.charCodeAt(c_i) + (1776 - 48)));
-    }
-    return fa_num;
-}

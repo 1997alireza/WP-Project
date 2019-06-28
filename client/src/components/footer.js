@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome' //TODO
 import '../assets/styles/global.css';
 import footer_apps from '../assets/img/footer_apps.png';
 import enamad from "../assets/img/enamad.png";

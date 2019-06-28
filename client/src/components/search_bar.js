@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
+import conf from '../config'
 
 function capitalFirst(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -12,13 +13,8 @@ export default class SearchBar extends React.Component {
         this.state = {area_suggestions: []}
     }
     componentDidMount() {
-        axios.get('http://localhost:3001/api/restaurants/area/')
+        axios.get(conf.server_adr + '/api/restaurants/area/')
             .then(response => {
-                // let area_suggestions = [];
-                // for(let i in response.data) {
-                //     area_suggestions.push(response.data[i]);
-                // }
-                console.log(response.data);
                 this.setState({area_suggestions: response.data});
             })
             .catch(error => {

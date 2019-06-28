@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import '../assets/styles/global.css'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 
 export default () => {
     return (

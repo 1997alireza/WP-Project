@@ -203,6 +203,28 @@ select{
 .help-img-div img{
     width: 50px;
 }
+.restaurant-big-item {
+    background-color: white;
+    height: 100%;
+    padding: 20px 15px 0px 15px;
+    box-shadow: 0 0 8px #ccc;
+    -webkit-box-shadow: 0 0 8px #ccc;
+    transition: 0.25s;
+    -webkit-transition: 0.25s;
+    cursor: pointer;
+}
+.restaurant-big-item img {
+    width: 80px;
+    webkit-box-shadow: 0 0.25rem 1.1rem #ccc;
+    box-shadow: 0 0.25rem 1.1rem #ccc;
+}
+.restaurant-big-item:hover {
+    box-shadow: 0 0 17px #acacac;
+    -webkit-box-shadow: 0 0 17px #acacac;
+}
+.restaurant-big-item:hover .start-order-btn{
+    background-color: rgba(212,0,98,.05)
+}
 .bests-res-div {
     width: 70vw;
     margin: 175px auto auto;
