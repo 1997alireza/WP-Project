@@ -2,20 +2,11 @@ import React, {Fragment} from 'react';
 import conf from '../../config'
 import {Link } from "react-router-dom";
 import {translate_food} from "../../assets/js/tools";
+import Stars from "../stars";
 
 export default class RestaurantItem extends React.Component {
     render() {
         let rate = this.props.details.averageRate;
-        let stars_element = [];
-        for(let i = 0; i < Math.floor(rate); i++){
-            stars_element.push(<i className={"fa fa-star full-star"}></i>)
-        }
-        if(Math.floor(rate) !== rate){
-            stars_element.push(<i className="fa fa-star half-star"></i>)
-        }
-        for(let i = Math.ceil(rate); i < 5; i++){
-            stars_element.push(<i className="fa fa-star dark-star"></i>)
-        }
         return (
             <Link to={"/restaurant/" + this.props.details._id }>
                 <div className="restaurant-small-item">
@@ -27,7 +18,7 @@ export default class RestaurantItem extends React.Component {
                             <p className="restaurant-item-name">{this.props.details.name}</p>
                             <div className="res-score">
                                 <div className="score-stars">
-                                    {stars_element}
+                                    <Stars rate={rate}/>
                                 </div>
                                 <span className="score-number">{rate}</span>
                             </div>

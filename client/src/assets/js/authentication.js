@@ -1,7 +1,7 @@
 import $ from 'jquery'
 
 $(document).ready(function() {
-    console.log("ASD")
+    console.log("ASD");
     $('#auth-login').click(function () {
         if($(this)[0].classList.contains('auth-current-section'))
             return;

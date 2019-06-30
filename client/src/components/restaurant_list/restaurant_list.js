@@ -15,12 +15,12 @@ export default class RestaurantList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {restaurant_list: [], categories_count: [], categories_check: {}, search_text: '',
-            filter_search_text: '', window_width: window.innerWidth, clicked_on_area: false};
+            filter_search_text: '', window_width: window.innerWidth, clicked_on_area: false, city: '', area: ''};
     }
-    componentWillMount() {
-        axios.get(conf.server_adr + '/api/restaurants?area=' + this.props.match.params.area)
+    initialize(){
+        this.setState({city: this.props.match.params.city, area:this.props.match.params.area});
+        axios.get(conf.server_adr + '/api/restaurants?area=' + this.props.match.params.area.toLowerCase())
             .then(response => {
-                console.log(response.data);
                 let categories_count = {};
                 let categories_check ={};
                 response.data.forEach(rest => {
@@ -45,6 +45,15 @@ export default class RestaurantList extends React.Component {
             .catch(error => {
                 console.log(error);
             });
+    }
+    componentWillMount() {
+        this.initialize();
+    }
+    componentDidUpdate(){
+        if(this.state.city !== this.props.match.params.city || this.state.area !== this.props.match.params.area) {
+            this.initialize();
+            this.setState({clicked_on_area: false})
+        }
     }
     componentDidMount() {
         window.addEventListener("resize", () => {
@@ -97,17 +106,10 @@ export default class RestaurantList extends React.Component {
             if(is_ok) {
                 let open = item.openingTime <= current_time_hour && current_time_hour <= item.closingTime;
                 if (open) {
-                    open_rest_list.push(<RestaurantItem key={key+'1'} details={item}/>);
-                    open_rest_list.push(<RestaurantItem key={key+'2'} details={item}/>);
-                    open_rest_list.push(<RestaurantItem key={key+'3'} details={item}/>);
-                    open_rest_list.push(<RestaurantItem key={key+'4'} details={item}/>);
-                    open_rest_list.push(<RestaurantItem key={key+'15'} details={item}/>);
+                    open_rest_list.push(<RestaurantItem key={key} details={item}/>);
                 }
                 else {
-                        closed_rest_list.push(<RestaurantItem key={key+'15'} details={item} closed/>);
-                        closed_rest_list.push(<RestaurantItem key={key+'13'} details={item} closed/>);
-                        closed_rest_list.push(<RestaurantItem key={key+'12'} details={item} closed/>);
-                        closed_rest_list.push(<RestaurantItem key={key+'17'} details={item} closed/>);
+                	closed_rest_list.push(<RestaurantItem key={key} details={item} closed/>);
                 }
             }
         });
@@ -125,7 +127,7 @@ export default class RestaurantList extends React.Component {
                 inner_el.push(open_rest_list[i+j])
             }
             open_rest_list_to_show.push(
-                <div className={"rest-part-row"}>
+                <div className={"rest-part-row"} key={i}>
                     {inner_el}
                 </div>
             )

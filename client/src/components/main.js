@@ -22,7 +22,6 @@ function Main() {
     return (
         <React.Fragment>
             <Header/>
-
             <div className="ord-div">
                 <div className="ord-title">
                     <div className="svg-reyhoon-icon">

@@ -198,10 +198,10 @@ a:hover {
     height: 100%;
     display: block;
     position: absolute;
-    background: -webkit-gradient(linear,left top,right top,color-stop(30%,#fff),to(hsla(0,0%,100%,0)));
-    background: -webkit-linear-gradient(left,#fff 30%,hsla(0,0%,100%,0));
-    background: -o-linear-gradient(left,#fff 30%,hsla(0,0%,100%,0) 100%);
-    background: linear-gradient(90deg,#fff 30%,hsla(0,0%,100%,0));
+    background: -webkit-gradient(linear,left top,right top,color-stop(20%,#fff),to(hsla(0,0%,100%,0)));
+    background: -webkit-linear-gradient(left,#fff 20%,hsla(0,0%,100%,0));
+    background: -o-linear-gradient(left,#fff 20%,hsla(0,0%,100%,0) 100%);
+    background: linear-gradient(90deg,#fff 20%,hsla(0,0%,100%,0));
     top: 0;
     left: 0;
     width: 60px;
@@ -367,4 +367,28 @@ a:hover {
     display: inline;
     font-size: 1.25rem;
     margin: .5em;
+}
+.shady-line {
+    width: 100%;
+    margin: auto;
+    position: relative;
+    top: 20px;
+    height: 1px;
+    background: black;
+    background: -webkit-gradient(
+            linear,
+            0 0,
+            100% 0,
+            from(white),
+            to(white),
+            color-stop(50%, #9b9b9b)
+    );
+}
+
+.float-right {
+    float: right;
+}
+
+.text-align-right {
+    text-align: right;
 }

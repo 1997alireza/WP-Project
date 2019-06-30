@@ -129,6 +129,11 @@ select{
     margin-top: -14px;
     margin-left: -11px;
 }
+.search-icon-div a {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}
 .search-icon-div i {
     font-size: 1.6rem;
     vertical-align: baseline;

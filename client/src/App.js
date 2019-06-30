@@ -4,7 +4,7 @@ import './assets/styles/global.css'
 import Main from './components/main'
 import Authentication from './components/authentication'
 import RestaurantList from './components/restaurant_list/restaurant_list';
-import Restaurant from './components/restaurant'
+import RestaurantPage from "./components/restaurant_page/restaurant_page";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
           <Route exact path="/" component={Main} />
           <Route path="/authentication" component={Authentication} />
           <Route path="/restaurant_list/:city/:area" component={RestaurantList} />
-          <Route path="/restaurant/:id" component={Restaurant} />
+          <Route path="/restaurant/:id" component={RestaurantPage} />
       </Router>
   );
 }
