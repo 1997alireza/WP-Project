@@ -14,8 +14,10 @@ import {translate_food} from "../../assets/js/tools";
 export default class RestaurantList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {restaurant_list: [], categories_count: [], categories_check: {}, search_text: '',
-            filter_search_text: '', window_width: window.innerWidth, clicked_on_area: false, city: '', area: ''};
+        this.state = {
+            restaurant_list: [], categories_count: [], categories_check: {}, search_text: '',
+            filter_search_text: '', window_width: window.innerWidth, clicked_on_area: false, city: '', area: ''
+        };
     }
     initialize(){
         this.setState({city: this.props.match.params.city, area:this.props.match.params.area});
@@ -204,7 +206,6 @@ export default class RestaurantList extends React.Component {
                         </div>
                     </div>
                     <div className={"rest-part"}>
-                        {/*TODO: if on small screen -> one or two item on each row*/}
                         {open_rest_list_to_show}
                         {
                             closed_rest_list_to_show.length > 0 ?

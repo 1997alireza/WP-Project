@@ -3,9 +3,8 @@
 }
 
 .react-tabs__tab-list {
-    margin: 0 0 10px;
     padding: 0;
-    margin-top: -4.3rem;
+    margin: -4.3rem 0 10px;
 }
 
 .react-tabs__tab {

@@ -33,7 +33,7 @@ export default class SearchBar extends React.Component {
         let city_param = this.state.search_city.length === 0 ?
             ' ' :
             city_to_eng(this.state.search_city);
-        let area_param = this.state.search_area === 0 ?
+        let area_param = this.state.search_area.length === 0 ?
             ' ' :
             this.state.search_area;
         return (

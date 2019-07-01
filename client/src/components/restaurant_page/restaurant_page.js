@@ -9,9 +9,9 @@ import '../../assets/styles/tabbar.css'
 import Header from '../header'
 import Footer from '../footer'
 import conf from '../../config'
-import {translate_food, translate_number} from "../../assets/js/tools"
+import {translate_food, translate_number, city_to_fa} from "../../assets/js/tools"
 import back from '../../assets/img/rest_page_back.jpg'
-import FoodItem from './food_card'
+import FoodCard from './food_card'
 import CommentCard from "./comment_card";
 import Stars from "../stars";
 import CommentAverageItem from "./comment-average-item";
@@ -19,18 +19,130 @@ import CommentAverageItem from "./comment-average-item";
 export default class RestaurantPage extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            details: {_id:'', name:'', openingTime:0, closingTime:0, address:{_id: '', city:'', area:'',addressLine:''}, comments:[], categories:[],foods:[], logo:'', averageRate:0 ,averageQuality: 0, averagePackaging: 0, averageDeliveryTime:0},
+            food_types: [], food_types_active: [], window_width: window.innerWidth, search_text: ''
+        }
+    }
+    food_search_text_change(event){
+        this.setState({search_text: event.target.value});
     }
     componentDidMount() {
+        window.addEventListener("resize", () => {
+            this.setState({window_width: window.innerWidth})
+        });
+    }
+    componentWillMount() {
         axios.get(conf.server_adr + '/api/restaurants/' + this.props.match.params.id)
             .then(response => {
-                console.log(response.data);
-                this.setState({restaurant_list: response.data});
+                let details = response.data;
+                console.log(details);
+                this.setState({details: details});
+
+                let food_types = {};
+                let food_types_active = {};
+                details.foods.forEach(food => {
+                    let food_type = food.foodSet;
+                    if(food_type in food_types)
+                        food_types[food_type].push(food);
+                    else {
+                        food_types[food_type] = [];
+                        food_types[food_type].push(food);
+                        food_types_active[food_type] = false;
+                    }
+                });
+                food_types_active[Object.keys(food_types_active)[0]] = true;
+                this.setState({food_types: food_types, food_types_active: food_types_active})
+
             })
             .catch(error => {
                 console.log(error);
             });
     }
+    active_type(activated_type){
+        let food_types_active_new = {};
+        Object.keys(this.state.food_types_active).forEach(type => {
+            food_types_active_new[type] = false;
+        });
+        food_types_active_new[activated_type] = true;
+        this.setState({food_types_active: food_types_active_new})
+    }
     render() {
+        let categories_elements = [];
+        this.state.details.categories.forEach(cat => {
+            categories_elements.push(<li>{translate_food(cat.name)}</li>)
+        });
+
+        let type_list = [];
+        Object.keys(this.state.food_types_active).forEach(type => {
+            if(this.state.food_types_active[type]) {
+                type_list.push(
+                    <div className="type-item type-item-active">
+                        <a href={"#" + type}>
+                            <div className="type-name">
+                                {translate_food(type)}
+                            </div>
+                        </a>
+                    </div>
+                );
+            }
+            else {
+                type_list.push(
+                    <div className="type-item">
+                        <a href={"#" + type} onClick={() => this.active_type(type)}>
+                            <div className="type-name">
+                                {translate_food(type)}
+                            </div>
+                        </a>
+                    </div>
+                );
+            }
+        });
+
+        let food_num_in_a_row = 2;
+        if(this.state.window_width < 985)
+            food_num_in_a_row = 1;
+
+        let foot_type_items = [];
+        Object.keys(this.state.food_types).forEach(type => {
+            let food_items = [];
+            this.state.food_types[type].forEach(food => {
+                if(food.name.substr(0, this.state.search_text.length) === this.state.search_text)
+                    food_items.push(
+                        <FoodCard name={food.name} price={food.price} description={food.description} />
+                    );
+            });
+            for(;food_items.length % food_num_in_a_row !== 0;){
+                food_items.push(<div className={"food-card-place"}></div>)
+            }
+            let food_items_on_row = [];
+            for(let i = 0; i < food_items.length; i += food_num_in_a_row){
+                let inner_el = [];
+                for(let j = 0; j < food_num_in_a_row; j++) {
+                    inner_el.push(food_items[i+j])
+                }
+                food_items_on_row.push(
+                    <div className="rest-part-row">
+                        {inner_el}
+                    </div>
+                )
+            }
+            foot_type_items.push(
+                <Fragment>
+                    <div id={type} className={"food-type-title-container"}>
+                        <p className={"food-type-title"}>{translate_food(type)}</p>
+                    </div>
+                    <div>
+                        {food_items_on_row}
+                    </div>
+                </Fragment>
+            );
+        });
+
+        let comments_card_elements = this.state.details.comments.map((comment, index) =>
+            <CommentCard key={index} details={comment}/>
+        );
+
         return (
             <Fragment>
                 <Header/>
@@ -38,7 +150,7 @@ export default class RestaurantPage extends React.Component {
 
                 <div className="rest-card-container">
                     <div className="left-absolute rest-card-header">
-                        <p><Link to={"/restaurant_list/a/b"/*TODO*/}>
+                        <p><Link to={"/restaurant_list/" + this.state.details.address.city + '/' + this.state.details.address.area}>
                             بازگشت</Link></p>
                         <i className="fas fa-angle-left" />
                     </div>
@@ -47,26 +159,31 @@ export default class RestaurantPage extends React.Component {
                             ریحون
                         </Link></p>
                         <i className="fas fa-angle-left" />
-                        <p><Link className="light-link" to={"/restaurant_list/a/b"}>
-                            تهران، ظفر
+                        <p><Link className="light-link" to={"/restaurant_list/" + this.state.details.address.city + '/' + this.state.details.address.area}>
+                            {city_to_fa(this.state.details.address.city) + '، ' + this.state.details.address.area}
                         </Link></p>
                         <i className="fas fa-angle-left headerIcon " />
-                        <p>باگت</p>
+                        <p>{this.state.details.name}</p>
                     </div>
                     <div className="rest-page-container">
                         <div className="rest-card">
                             <div>
-                                <img src="http://localhost:3001/img/restaurants/5cf7962fc3f8cbdb77df4f90.jpeg"/>
-                                <p className="rest-name"> باگت (اندرزگو)</p>
+                                <img src={conf.server_adr + this.state.details.logo}/>
+                                <p className="rest-name">{this.state.details.name}</p>
                                 <div className="res-score">
-                                    <span className="number-of-comments">(36)</span>
+                                    <span className="number-of-comments">({this.state.details.comments.length})</span>
                                     <div className="score-stars">
-                                        <i className="fa fa-star full-star"></i><i className="fa fa-star full-star"></i><i className="fa fa-star full-star"></i><i className="fa fa-star full-star"></i><i className="fa fa-star half-star"></i>                        </div>
-                                    <span className="score-number">4.5</span>
+                                        <Stars rate={this.state.details.averageRate}/>
+                                    </div>
+                                    <span className="score-number">{this.state.details.averageRate}</span>
                                 </div>
-                                <div><ul className="res-food-types"><li>فست&zwnj;فود</li><li>ساندویچ</li><li>پیتزا</li></ul></div>
+                                <div>
+                                    <ul className="res-food-types">
+                                        {categories_elements}
+                                    </ul>
+                                </div>
                                 <p className="rest-address">
-                                    بلوار اندرزگو، بین کاوه و قیطریه، نبش مهر محمدی
+                                    {this.state.details.address.addressLine}
                                 </p>
                             </div>
                             <div className="shady-line" />
@@ -77,7 +194,7 @@ export default class RestaurantPage extends React.Component {
                                 <Tab>اطلاعات رستوران</Tab>
                                 <Tab>نظرات کاربران</Tab>
                             </TabList>
-                            <TabPanel>
+                            <div className={"tab-container-outer"}  id={"tab_menu"}>
                                 <div className="tab-header">
                                     <p className="search-rest-icon">
                                         <i className="fas fa-search" />
@@ -86,6 +203,7 @@ export default class RestaurantPage extends React.Component {
                                         className="search-rest-menu"
                                         placeholder="جستجو در منوی این رستوران"
                                         type="text"
+                                        onChange={(event) => this.food_search_text_change(event)}
                                     />
                                 </div>
 
@@ -93,46 +211,18 @@ export default class RestaurantPage extends React.Component {
                                     <div className="type-part">
                                         <div className="type-part-inner">
                                             <div className="type-list">
-                                                <div className="type-item type-item-active">
-                                                    <div className="type-name">
-                                                        پیتزا
-                                                    </div>
-                                                </div>
-                                                <div className="type-item">
-                                                    <div className="type-name">
-                                                        ساندویچ
-                                                    </div>
-                                                </div>
-                                                <div className="type-item">
-                                                    <div className="type-name">
-                                                        برگر
-                                                    </div>
-                                                </div>
+                                                {type_list}
                                             </div>
                                         </div>
                                     </div>
                                     <div className="rest-part">
-                                        <div>
-                                            <p className="food-type-title">پیتزا</p>
-                                        </div>
-                                        <div className="rest-part-row">
-                                            <FoodItem />
-                                            <FoodItem />
-                                        </div>
-                                        <div>
-                                            <p className="food-type-title">پیتزا</p>
-                                        </div>
-                                        <div className="rest-part-row">
-                                            <FoodItem />
-                                            <FoodItem />
-                                        </div>
+                                        {foot_type_items}
                                     </div>
                                 </div>
-                            </TabPanel>
+                            </div>
 
 
-
-                            <TabPanel>
+                            <div className={"tab-container-outer"}  id={"tab_details"}>
                                 <div className="tab-container">
                                     <div className="tab-header">
                                         <p>اطلاعات رستوران</p>
@@ -140,12 +230,12 @@ export default class RestaurantPage extends React.Component {
                                     <br />
                                     <div className="details-container">
                                         <div className="rest-name-container">
-                                            <p> باگت</p>
+                                            <p>{this.state.details.name}</p>
                                         </div>
                                         <div className="address-container">
                                             <i className="address-icon fas fa-map-marker-alt" />
                                             <p className="headerSemiSmallBold address-text">
-                                                آدرس دقیق رستوران
+                                                {this.state.details.address.addressLine}
                                             </p>
                                         </div>
                                         <div className="time-container">
@@ -156,21 +246,19 @@ export default class RestaurantPage extends React.Component {
                                             <div className="time-container-part-two">
                                                 <p className="daily-time-all-day">همه‌ روزه</p>
                                                 <p className="timeText"> از{" "}
-                                                    {"۱۱"}
+                                                    {this.state.details.openingTime}
                                                     {" "}تا{" "}
-                                                    {"۲۳"}</p>
+                                                    {this.state.details.closingTime}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </TabPanel>
+                            </div>
 
-
-
-                            <TabPanel>
+                            <div className={"tab-container-outer"} id={"tab_comments"}>
                                 <div className="tab-container">
                                     <div className="tab-header">
-                                        <p>نظرات کاربران در مورد باگت</p>
+                                        <p>نظرات کاربران در مورد {this.state.details.name}</p>
                                     </div>
                                     <div className="commentsOverview">
                                         <div className="text-align-right">
@@ -181,24 +269,22 @@ export default class RestaurantPage extends React.Component {
                                         </div>
                                         <div className="big-score">
                                             <div className="score-stars">
-                                                <Stars rate={4.5}/>
-                                                <span className="number-of-comments">(4)</span>
+                                                <Stars rate={this.state.details.averageRate}/>
+                                                <span className="number-of-comments">({this.state.details.comments.length})</span>
                                             </div>
-                                            <span className="score-number">4.5</span>
+                                            <span className="score-number">{this.state.details.averageRate}</span>
                                         </div>
                                         <div className="comment-average-container">
-                                            <CommentAverageItem rate={43} title={'کیفیت غذا'}/>
-                                            <CommentAverageItem rate={43} title={'زمان غذا'}/>
-                                            <CommentAverageItem rate={43} title={'شسیشسیشسی غذا'}/>
+                                            <CommentAverageItem rate={this.state.details.averageQuality * 20} title={'کیفیت غذا'}/>
+                                            <CommentAverageItem rate={this.state.details.averagePackaging * 20} title={'کیفیت بسته‌بندی'}/>
+                                            <CommentAverageItem rate={this.state.details.averageDeliveryTime * 20} title={'سرعت ارسال پیک'}/>
                                         </div>
                                         <div className="comment-container">
-                                            <CommentCard />
-                                            <CommentCard />
-                                            <CommentCard />
+                                            {comments_card_elements}
                                         </div>
                                     </div>
                                 </div>
-                            </TabPanel>
+                            </div>
 
                         </Tabs>
                     </div>
