@@ -5,6 +5,10 @@
 .react-tabs__tab-list {
     padding: 0;
     margin: -4.3rem 0 10px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 3;
 }
 
 .react-tabs__tab {
@@ -20,6 +24,22 @@
     outline: none;
 }
 
+/*.active .react-tabs__tab {*/
+    /*background: #fff;*/
+    /*border-color: #aaa;*/
+    /*color: black;*/
+    /*border-radius: 5px 5px 0 0;*/
+/*}*/
+/*.active .react-tabs__tab:after {*/
+    /*content: "";*/
+    /*background: #d40062;*/
+    /*position: absolute;*/
+    /*bottom: -8px;*/
+    /*left: 50%;*/
+    /*transform: translate(-50%, 0);*/
+    /*height: 2px;*/
+    /*width: 50px;*/
+/*}*/
 .react-tabs__tab--selected {
     background: #fff;
     border-color: #aaa;

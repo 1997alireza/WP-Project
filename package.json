@@ -19,7 +19,8 @@
   "homepage": "https://github.com/1997alireza/WP-Project#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.5.12"
+    "mongoose": "^5.5.12",
+    "react-scroll": "^1.7.12"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"

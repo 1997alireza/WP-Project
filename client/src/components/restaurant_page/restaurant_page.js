@@ -16,12 +16,15 @@ import CommentCard from "./comment_card";
 import Stars from "../stars";
 import CommentAverageItem from "./comment-average-item";
 
+import * as Scroll from 'react-scroll';
+import { Link as ScrollLink, Element, Events, scrollSpy, scroller } from 'react-scroll'
+
 export default class RestaurantPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             details: {_id:'', name:'', openingTime:0, closingTime:0, address:{_id: '', city:'', area:'',addressLine:''}, comments:[], categories:[],foods:[], logo:'', averageRate:0 ,averageQuality: 0, averagePackaging: 0, averageDeliveryTime:0},
-            food_types: [], food_types_active: [], window_width: window.innerWidth, search_text: ''
+            food_types: [], food_types_active: [], window_width: window.innerWidth, search_text: '', active_tab: 0
         }
     }
     food_search_text_change(event){
@@ -78,22 +81,22 @@ export default class RestaurantPage extends React.Component {
             if(this.state.food_types_active[type]) {
                 type_list.push(
                     <div className="type-item type-item-active">
-                        <a href={"#" + type}>
+                        <ScrollLink to={type} smooth={true} offset={-100} duration={500}>
                             <div className="type-name">
                                 {translate_food(type)}
                             </div>
-                        </a>
+                        </ScrollLink>
                     </div>
                 );
             }
             else {
                 type_list.push(
                     <div className="type-item">
-                        <a href={"#" + type} onClick={() => this.active_type(type)}>
+                        <ScrollLink to={type} smooth={true} offset={-100} duration={500} onClick={() => this.active_type(type)}>
                             <div className="type-name">
                                 {translate_food(type)}
                             </div>
-                        </a>
+                        </ScrollLink>
                     </div>
                 );
             }
@@ -102,6 +105,10 @@ export default class RestaurantPage extends React.Component {
         let food_num_in_a_row = 2;
         if(this.state.window_width < 985)
             food_num_in_a_row = 1;
+
+        let show_food_type_bar = true;
+        if(this.state.window_width < 850)
+            show_food_type_bar = false;
 
         let foot_type_items = [];
         Object.keys(this.state.food_types).forEach(type => {
@@ -128,14 +135,14 @@ export default class RestaurantPage extends React.Component {
                 )
             }
             foot_type_items.push(
-                <Fragment>
+                <Element name={type}>
                     <div id={type} className={"food-type-title-container"}>
                         <p className={"food-type-title"}>{translate_food(type)}</p>
                     </div>
                     <div>
                         {food_items_on_row}
                     </div>
-                </Fragment>
+                </Element>
             );
         });
 
@@ -190,102 +197,128 @@ export default class RestaurantPage extends React.Component {
                         </div>
                         <Tabs>
                             <TabList>
-                                <Tab>منوی رستوران</Tab>
-                                <Tab>اطلاعات رستوران</Tab>
-                                <Tab>نظرات کاربران</Tab>
+                                <Tab className={"display-none"}></Tab>
+                                <ScrollLink to={"tab_menu"} smooth={true} offset={-100} duration={500}
+                                            >
+                                    <Tab className={this.state.active_tab === 0 ? 'react-tabs__tab react-tabs__tab--selected' : 'react-tabs__tab'} onClick={() => this.setState({active_tab: 0})}>
+                                        منوی رستوران
+                                    </Tab>
+                                </ScrollLink>
+                                <ScrollLink to={"tab_details"} smooth={true} offset={-100} duration={500}
+                                            >
+                                    <Tab className={this.state.active_tab === 1 ? 'react-tabs__tab react-tabs__tab--selected' : 'react-tabs__tab'} onClick={() => this.setState({active_tab: 1})}>
+                                        اطلاعات رستوران
+                                    </Tab>
+                                </ScrollLink>
+                                <ScrollLink to={"tab_comments"} smooth={true} offset={-100} duration={500}
+                                            >
+                                    <Tab className={this.state.active_tab === 2 ? 'react-tabs__tab react-tabs__tab--selected' : 'react-tabs__tab'} onClick={() => this.setState({active_tab: 2})}>
+                                        نظرات کاربران
+                                    </Tab>
+                                </ScrollLink>
                             </TabList>
-                            <div className={"tab-container-outer"}  id={"tab_menu"}>
-                                <div className="tab-header">
-                                    <p className="search-rest-icon">
-                                        <i className="fas fa-search" />
-                                    </p>
-                                    <input
-                                        className="search-rest-menu"
-                                        placeholder="جستجو در منوی این رستوران"
-                                        type="text"
-                                        onChange={(event) => this.food_search_text_change(event)}
-                                    />
-                                </div>
-
-                                <div className="food-list-main">
-                                    <div className="type-part">
-                                        <div className="type-part-inner">
-                                            <div className="type-list">
-                                                {type_list}
-                                            </div>
-                                        </div>
+                            <Element name={"tab_menu"}>
+                                <div className={"tab-container-outer"}>
+                                    <div className="tab-header">
+                                        <p className="search-rest-icon">
+                                            <i className="fas fa-search" />
+                                        </p>
+                                        <input
+                                            className="search-rest-menu"
+                                            placeholder="جستجو در منوی این رستوران"
+                                            type="text"
+                                            onChange={(event) => this.food_search_text_change(event)}
+                                        />
                                     </div>
-                                    <div className="rest-part">
+
+                                    <div className="food-list-main">
+                                        {
+                                            show_food_type_bar ?
+                                                <div className="type-part">
+                                                    <div className="type-part-inner">
+                                                        <div className="type-list">
+                                                            {type_list}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                :
+                                                <Fragment></Fragment>
+                                        }
+                                        <div className="rest-part">
                                         {foot_type_items}
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div className={"tab-container-outer"}  id={"tab_details"}>
-                                <div className="tab-container">
-                                    <div className="tab-header">
-                                        <p>اطلاعات رستوران</p>
-                                    </div>
-                                    <br />
-                                    <div className="details-container">
-                                        <div className="rest-name-container">
-                                            <p>{this.state.details.name}</p>
-                                        </div>
-                                        <div className="address-container">
-                                            <i className="address-icon fas fa-map-marker-alt" />
-                                            <p className="headerSemiSmallBold address-text">
-                                                {this.state.details.address.addressLine}
-                                            </p>
-                                        </div>
-                                        <div className="time-container">
-                                            <div className="time-container-part-one">
-                                                <i className="time-icon fas fa-clock" />
-                                                <p className="time-header">ساعت سفارش‌گیری</p>
-                                            </div>
-                                            <div className="time-container-part-two">
-                                                <p className="daily-time-all-day">همه‌ روزه</p>
-                                                <p className="timeText"> از{" "}
-                                                    {this.state.details.openingTime}
-                                                    {" "}تا{" "}
-                                                    {this.state.details.closingTime}</p>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Element>
 
-                            <div className={"tab-container-outer"} id={"tab_comments"}>
-                                <div className="tab-container">
-                                    <div className="tab-header">
-                                        <p>نظرات کاربران در مورد {this.state.details.name}</p>
-                                    </div>
-                                    <div className="commentsOverview">
-                                        <div className="text-align-right">
-                                            <p>
-                                                شما هم می‌توانید بعد از سفارش از این رستوران نظر خود را
-                                                ثبت نمایید.
-                                            </p>
+
+                            <Element name={"tab_details"}>
+                                <div className={"tab-container-outer"}>
+                                    <div className="tab-container">
+                                        <div className="tab-header">
+                                            <p>اطلاعات رستوران</p>
                                         </div>
-                                        <div className="big-score">
-                                            <div className="score-stars">
-                                                <Stars rate={this.state.details.averageRate}/>
-                                                <span className="number-of-comments">({this.state.details.comments.length})</span>
+                                        <br />
+                                        <div className="details-container">
+                                            <div className="rest-name-container">
+                                                <p>{this.state.details.name}</p>
                                             </div>
-                                            <span className="score-number">{this.state.details.averageRate}</span>
-                                        </div>
-                                        <div className="comment-average-container">
-                                            <CommentAverageItem rate={this.state.details.averageQuality * 20} title={'کیفیت غذا'}/>
-                                            <CommentAverageItem rate={this.state.details.averagePackaging * 20} title={'کیفیت بسته‌بندی'}/>
-                                            <CommentAverageItem rate={this.state.details.averageDeliveryTime * 20} title={'سرعت ارسال پیک'}/>
-                                        </div>
-                                        <div className="comment-container">
-                                            {comments_card_elements}
+                                            <div className="address-container">
+                                                <i className="address-icon fas fa-map-marker-alt" />
+                                                <p className="headerSemiSmallBold address-text">
+                                                    {this.state.details.address.addressLine}
+                                                </p>
+                                            </div>
+                                            <div className="time-container">
+                                                <div className="time-container-part-one">
+                                                    <i className="time-icon fas fa-clock" />
+                                                    <p className="time-header">ساعت سفارش‌گیری</p>
+                                                </div>
+                                                <div className="time-container-part-two">
+                                                    <p className="daily-time-all-day">همه‌ روزه</p>
+                                                    <p className="timeText"> از{" "}
+                                                        {this.state.details.openingTime}
+                                                        {" "}تا{" "}
+                                                        {this.state.details.closingTime}</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Element>
 
+                            <Element name={"tab_comments"}>
+                                <div className={"tab-container-outer"}>
+                                    <div className="tab-container">
+                                        <div className="tab-header">
+                                            <p>نظرات کاربران در مورد {this.state.details.name}</p>
+                                        </div>
+                                        <div className="commentsOverview">
+                                            <div className="text-align-right">
+                                                <p>
+                                                    شما هم می‌توانید بعد از سفارش از این رستوران نظر خود را
+                                                    ثبت نمایید.
+                                                </p>
+                                            </div>
+                                            <div className="big-score">
+                                                <div className="score-stars">
+                                                    <Stars rate={this.state.details.averageRate}/>
+                                                    <span className="number-of-comments">({this.state.details.comments.length})</span>
+                                                </div>
+                                                <span className="score-number">{this.state.details.averageRate}</span>
+                                            </div>
+                                            <div className="comment-average-container">
+                                                <CommentAverageItem rate={this.state.details.averageQuality * 20} title={'کیفیت غذا'}/>
+                                                <CommentAverageItem rate={this.state.details.averagePackaging * 20} title={'کیفیت بسته‌بندی'}/>
+                                                <CommentAverageItem rate={this.state.details.averageDeliveryTime * 20} title={'سرعت ارسال پیک'}/>
+                                            </div>
+                                            <div className="comment-container">
+                                                {comments_card_elements}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </Element>
                         </Tabs>
                     </div>
 

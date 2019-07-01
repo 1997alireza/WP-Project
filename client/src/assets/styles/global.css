@@ -392,3 +392,7 @@ a:hover {
 .text-align-right {
     text-align: right;
 }
+
+.display-none {
+    display: none;
+}
