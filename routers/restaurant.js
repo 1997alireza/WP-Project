@@ -9,9 +9,13 @@ const food = require("../models/food.js");
 
 function restaurant_details_to_send(restaurant) {
     let sum_qualities = 0;
+    let sum_packagings = 0;
+    let sum_deliveryTimes = 0;
     let num = 0;
     restaurant.comments.forEach(comment => {
         sum_qualities += comment.quality;
+        sum_packagings += comment.packaging;
+        sum_deliveryTimes += comment.deliveryTime;
         num++;
     });
     return {
@@ -21,9 +25,13 @@ function restaurant_details_to_send(restaurant) {
         closingTime: restaurant.closingTime,
         address: restaurant.address,
         categories: restaurant.categories,
+        comments: restaurant.comments,
         foods: restaurant.foods,
         logo: '/img/restaurants/' + restaurant._id + '.jpeg',
-        averageRate: sum_qualities / Math.max(num, 1)
+        averageRate: Math.round((sum_qualities+sum_packagings+sum_deliveryTimes) / 3 / Math.max(num, 1) * 10) / 10,
+        averageQuality: Math.round(sum_qualities / Math.max(num, 1) * 10) / 10,
+        averagePackaging: Math.round(sum_packagings / Math.max(num, 1) * 10) / 10,
+        averageDeliveryTime: Math.round(sum_deliveryTimes / Math.max(num, 1) * 10) / 10
     };
 }
 const restaurant_router = express.Router();
